@@ -6,6 +6,17 @@
  */
 
 require('dotenv').config();
+
+// Fallback hardcoded values agar Railway env vars na mile
+process.env.MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://harshkaushal137_db_user:cSOKfDJpdwKJUBuw@cluster0.jkysra4.mongodb.net/PrepMyShow?appName=Cluster0';
+process.env.GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyB9MbZpUELy6wtmVvcWUupCT2ibuS05PZ0';
+process.env.GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+process.env.EMAIL_USER = process.env.EMAIL_USER || 'sarthaksiii12@gmail.com';
+process.env.EMAIL_PASS = process.env.EMAIL_PASS || 'mwxr bvvq sgbe okbo';
+process.env.TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID || 'AC79c2e064915d9ef62b5a3ab7793f4ed3';
+process.env.TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN || 'e60b1a0153952f7516b3f7c418a41252';
+process.env.TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER || '+15077135894';
+process.env.FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'https://next-gen-ticket-booking.vercel.app';
 const express  = require('express');
 const cors     = require('cors');
 const mongoose = require('mongoose');
@@ -16,14 +27,7 @@ const app  = express();
 const PORT = process.env.PORT || 3001;
 
 // ── MongoDB Connect ──────────────────────────────────────────────
-mongoose.connect(process.env.MONGODB_URI, {
-  serverSelectionTimeoutMS: 30000,
-  socketTimeoutMS: 45000,
-  connectTimeoutMS: 30000,
-  maxPoolSize: 10,
-  retryWrites: true,
-  w: 'majority'
-})
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('✅ MongoDB connected!'))
   .catch(err => console.error('❌ MongoDB connection error:', err.message));
 
